@@ -30,3 +30,6 @@ bin/
 .cache/
 /.clangd
 
+/vsxmake2022
+pythonlink.txt 
+pythonpath.txt 
