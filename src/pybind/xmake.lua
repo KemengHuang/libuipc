@@ -1,4 +1,5 @@
-add_requires("pybind11")
+-- add_requires("pybind11")
+add_requireconfs("pybind11.python", {version = "3.11", override = true})
 
 target("pyuipc")
     add_rules("python.library")

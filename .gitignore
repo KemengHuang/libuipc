@@ -29,4 +29,5 @@ bin/
 .xmake/
 .cache/
 /.clangd
-
+/vsxmake2022
+xmake-requires.lock
