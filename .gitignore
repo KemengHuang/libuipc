@@ -33,3 +33,4 @@ bin/
 /vsxmake2022
 pythonlink.txt 
 pythonpath.txt 
+xmake-requires.lock

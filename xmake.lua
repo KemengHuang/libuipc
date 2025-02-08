@@ -1,5 +1,7 @@
 set_xmakever("2.9.8")
 
+set_policy("package.requires_lock", true)
+
 option("gui", {default = false})
 option("pybind", {default = false, description = "Build pyuipc"})
 option("torch", {default = false, description = "Build pytorch extension"})
