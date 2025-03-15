@@ -40,8 +40,11 @@ void ContactTabular::init(backend::SceneVisitor& scene)
     for(auto&& [topo, resistance, friction_rate, enabled] :
         zip(topo_view, resistance_view, friction_rate_view, enabled_view))
     {
-        m_table[topo.x() * elements + topo.y()] = core::ContactModel{
+        auto model = core::ContactModel{
             topo, friction_rate, resistance, enabled ? true : false, Json::object()};
+
+        m_table[topo.x() * elements + topo.y()] = model;
+        m_table[topo.y() * elements + topo.x()] = model;
     }
 }
 
@@ -208,6 +211,14 @@ namespace detail
                     obj_id = geo.instances().create<IndexT>("sanity_check/object_id");
 
                 std::ranges::fill(view(*obj_id), geo_id_to_object_id.at(geo_slot->id()));
+            }
+
+            // 4) label geometry meta with geometry_id and object_id
+            {
+                auto gid = geo.meta().create<IndexT>("sanity_check/geometry_id", -1);
+                view(*gid)[0] = geo_slot->id();
+                auto oid = geo.meta().create<IndexT>("sanity_check/object_id", -1);
+                view(*oid)[0] = geo_id_to_object_id.at(geo_slot->id());
             }
         }
     }

@@ -110,6 +110,7 @@ class UIPC_CORE_API Scene final
     class Impl;
     U<Impl> m_impl;
     friend class SanityChecker;
+    friend struct fmt::formatter<Scene>;
 
     void init(backend::WorldVisitor& world);  // only be called by World.
 
@@ -122,6 +123,17 @@ class UIPC_CORE_API Scene final
     World& world() noexcept;
     Float  dt() const noexcept;
     bool   is_started() const noexcept;
+
+    DiffSim& _diff_sim() noexcept; // only called by SceneVisitor
     bool   is_pending() const noexcept;
 };
 }  // namespace uipc::core
+
+namespace fmt
+{
+template <>
+struct UIPC_CORE_API formatter<uipc::core::Scene> : formatter<string_view>
+{
+    appender format(const uipc::core::Scene& c, format_context& ctx) const;
+};
+}  // namespace fmt

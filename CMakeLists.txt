@@ -16,11 +16,11 @@ set(UIPC_VERSION_PATCH 0)
 option(UIPC_USING_LOCAL_VCPKG "Using local vcpkg" ON)
 option(UIPC_BUILD_GUI "Build GUI, turn it off if you're server only" OFF)
 option(UIPC_BUILD_PYBIND "Build pyuipc" OFF)
-option(UIPC_BUILD_TORCH_EXTENSION "Build pytorch extension" OFF)
 option(UIPC_BUILD_EXAMPLES "Build examples" ON)
 option(UIPC_BUILD_TESTS "Build tests" ON)
 option(UIPC_BUILD_BENCHMARKS "Build benchmarks" ON)
 option(UIPC_DEV_MODE "Enable developer mode" OFF)
+set(UIPC_PYTHON_EXECUTABLE_PATH "" CACHE PATH "Python executable path")
 
 # =========================================================================
 # Backend Options
@@ -31,6 +31,7 @@ option(UIPC_WITH_CUDA_BACKEND "Build with CUDA backend" ON)
 # Show Logo and Options
 # =========================================================================
 uipc_show_logo()
+uipc_find_python_executable_path()
 uipc_show_options()
 uipc_config_vcpkg_install()
 
