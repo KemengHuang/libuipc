@@ -6,3 +6,7 @@ dist/
 build/
 pyuipc-*
 /output
+__pycache__
+*.pyc
+.env
+.vscode
